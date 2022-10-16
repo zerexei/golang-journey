@@ -1,11 +1,39 @@
 package greetings
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"math/rand"
+	"time"
+)
 
-func Hello(name string) string {
+func Hello(name string) (string, error) {
 	//var message string
 	//message = fmt.Sprintf("Hi, %v. Welcome to golang!", name)
+	//message := fmt.Sprintf("Hi, %v. Welcome to golang!", name)
 
-	message := fmt.Sprintf("Hi, %v. Welcome to golang!", name)
-	return message
+	if name == "" {
+		return "", errors.New("empty name")
+	}
+
+	//var message string = fmt.Sprintf("Hi, %v. Welcome to golang!", name)
+	message := fmt.Sprintf(randomFormat(), name)
+
+	return message, nil
+}
+
+// Go executes `init` functions automatically at program startup,
+// after global variables have been initialized.
+func init() {
+	rand.Seed(time.Now().UnixNano())
+}
+
+func randomFormat() string {
+	formats := []string{
+		"Hi, %v. Welcome to golang!",
+		"Great to see you, %v!",
+		"Hail, %v!, Well met!",
+	}
+
+	return formats[rand.Intn(len(formats))]
 }

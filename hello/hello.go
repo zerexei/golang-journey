@@ -1,20 +1,33 @@
 package main // package name
 
 import (
-	"fmt"
-
 	"example.com/greetings"
+	"fmt"
+	"log"
 	//"rsc.io/quote/v4"
 )
 
 func main() {
-	fmt.Println("Hello, GO lang!")
-	message := greetings.Hello("John")
-	fmt.Println(message)
+	//fmt.Println("Hello, GO lang!")
 	//fmt.Println(quote.Glass())
 	//fmt.Println(quote.Go())
 	//fmt.Println(quote.Hello())
 	//fmt.Println(quote.Opt())
+
+	//message := greetings.Hello("John")
+	//fmt.Println(message)
+
+	log.SetPrefix("Greetings: ")
+	log.SetFlags(0)
+
+	message, err := greetings.Hello("John")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(message)
+
 }
 
 // # IMPORT A PACKAGE
