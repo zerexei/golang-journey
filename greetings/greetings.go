@@ -23,12 +23,14 @@ func Hello(name string) (string, error) {
 }
 
 func Hellos(names []string) (map[string]string, error) {
-	messages = make(map[string]string)
+	// ? why go doesn't tell that the variable isn't defined
+	messages := make(map[string]string)
+
 	for _, name := range names {
 		message, err := Hello(name)
 
-		if errr != nil {
-			return nill, err
+		if err != nil {
+			return nil, err
 		}
 
 		messages[name] = message

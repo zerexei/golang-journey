@@ -24,7 +24,7 @@ func main() {
 
 	names := []string{"John", "Jane", "mike"}
 
-	messages, err := greetings.Hellows(names)
+	messages, err := greetings.Hellos(names)
 
 	if err != nil {
 		log.Fatal(err)
